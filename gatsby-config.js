@@ -77,8 +77,8 @@ module.exports = {
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -110,7 +110,7 @@ module.exports = {
       options: {
         name: `Gatsby Blog`,
         short_name: `GatsbyJS`,
-        start_url: `/`,
+        start_url: `/blog`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
@@ -120,4 +120,4 @@ module.exports = {
       },
     },
   ],
-}
+};
