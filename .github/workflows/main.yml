@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: enriikke/gatsby-gh-pages-action@v2.2.0
-        env:
+      - uses: actions/checkout@v1
+      - uses: enriikke/gatsby-gh-pages-action@v2.2.0
+        with:
           DEPLOY-BRANCH: main
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS-TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
     
