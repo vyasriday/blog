@@ -1,0 +1,16 @@
+name: Gatsby Publish
+
+on: push
+
+jobs:
+  publish:
+    name: publish to github pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: enriikke/gatsby-gh-pages-action@v2.2.0
+        env:
+          DEPLOY-BRANCH: main
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+    
