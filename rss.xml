@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[A place where I talk about things I know and want the world to know.]]></description><link>https://vyasriday.github.io/blog</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Oct 2022 06:16:51 GMT</lastBuildDate><item><title><![CDATA[Managing different SSH keys for GitLab and GitHub on your System.]]></title><description><![CDATA[This article is written assuming that you know how to add ssh keys to your GitHub or GitLab account. I am talking about just GitHub and…]]></description><link>https://vyasriday.github.io/blog/hello-world/</link><guid isPermaLink="false">https://vyasriday.github.io/blog/hello-world/</guid><pubDate>Mon, 10 Oct 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h6&gt;This article is written assuming that you know how to add ssh keys to your GitHub or GitLab account.&lt;/h6&gt;
+&lt;h6&gt;I am talking about just GitHub and GitLab but you can use the same for any cloud git providers.&lt;/h6&gt;
+&lt;p&gt;Many times it happens that when you push to your GitHub repository you have to enter your GitHub password each time.
+Frustrating, isn’t it?&lt;/p&gt;
+&lt;p&gt;It used to happen a lot with me until I learned how to use ssh with GitHub.&lt;/p&gt;
+&lt;p&gt;*But now I have got another problem.*😣
+I have my code on both GitLab and GitHub and now I have to manage multiple ssh keys but I don’t know how and I can’t even use the same ssh keys for both of them.😥&lt;/p&gt;
+&lt;p&gt;Let’s see how we can do that 🤠&lt;/p&gt;
+&lt;p&gt;We will go step by step so be patient before we reach the final step.&lt;/p&gt;
+&lt;p&gt;Step 1. Generate ssh keys.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt; $ ssh-keygen &lt;span class=&quot;token parameter variable&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;youremail@email.com&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that command generates a pair of public and private keys in your &lt;code class=&quot;language-text&quot;&gt;~/.ssh&lt;/code&gt; directory and asks you to provide the name. By default, the name is &lt;code class=&quot;language-text&quot;&gt;id_rsa.pub&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;id_rsa&lt;/code&gt; for public and private keys respectively.&lt;/p&gt;
+&lt;p&gt;We will generate two pairs of keys each for GitHub and GitLab and name them id_rsa_github and id_rsa_gitlab respectively.&lt;/p&gt;
+&lt;p&gt;Now your &lt;code class=&quot;language-text&quot;&gt;~/.ssh&lt;/code&gt; should look like&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;|__ id_rsa_gitlab
+|__ id_rsa_gitlab.pub
+|__ id_rsa_github
+|__ id_rsa_github.pub&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Step 2. Add the respective public key to the respective provider(GitLab and GitHub)&lt;/p&gt;
+&lt;p&gt;Step 3. &lt;em&gt;Now comes the important part&lt;/em&gt;. How to make ssh-client know which key to use when pushed to GitHub or GitLab? 🤔&lt;/p&gt;
+&lt;p&gt;So we can have a &lt;code class=&quot;language-text&quot;&gt;config&lt;/code&gt; file which will help ssh-client to solve the problem.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; ~/.ssh/config &lt;span class=&quot;token comment&quot;&gt;# we are creating a config file using touch utility. You can create the same in whatever way you want&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s see what to put in the config file.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa_github
+
+Host gitlab.com
+HostName gitlab.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa_gitlab&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here, we are basically telling ssh-client which ssh private key to use based on the provider.
+So whenever we try to push to our GitHub repo it will automatically use the GitHub key and we won’t have any trouble handling multiple keys. 😎&lt;/p&gt;
+&lt;p&gt;If you face any problem in implementing this, let me know in the comments. I Will be happy to resolve.&lt;/p&gt;
+&lt;p&gt;Thanks for reading 😀&lt;/p&gt;</content:encoded></item></channel></rss>
