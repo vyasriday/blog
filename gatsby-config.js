@@ -1,10 +1,10 @@
 module.exports = {
   pathPrefix: "/reponame",
   siteMetadata: {
-    title: `Welcome to Hridayesh Sharma's Blog`,
+    title: `Blog by Hridayesh Sharma`,
     author: {
       name: `Hridayesh Sharma`,
-      summary: `who is a software engineer and works in the front end world.`,
+      summary: `who is a software engineer and works mostly in the front end world.`,
     },
     description: `A place where I talk about things I know and want the world to know.`,
     siteUrl: `https://vyasriday.github.io/blog`,

@@ -84,9 +84,7 @@ body {
 }
 
 footer {
-  padding: var(--spacing-6) var(--spacing-0);
-  display: flex;
-  justify-content: center;
+  align-self: center;
 }
 
 hr {
@@ -246,6 +244,10 @@ a:focus {
   margin: var(--spacing-0) auto;
   max-width: var(--maxWidth-wrapper);
   padding: var(--spacing-10) var(--spacing-5);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .global-wrapper[data-is-root-path="true"] .bio {
